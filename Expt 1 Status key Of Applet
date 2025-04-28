@@ -1,0 +1,63 @@
+package TEETC147;
+import java.applet.*;
+import java.awt.*;
+import java.awt.event.*;
+public class KeyboardEvents extends Applet implements KeyListener , ActionListener
+{
+Label purpose;
+char keyChar = ' ';
+int number = 0;
+String string1 = " ", string2 = " ", string3 = " ", string4 = " ";
+Button start;
+public void init() 
+{
+requestFocus(); 
+start = new Button("START");
+add(start);
+start.addActionListener(this);
+addKeyListener(this); 
+purpose = new Label("The purpose of this program is to show how Keyboard Events work");
+add(purpose);
+} 
+public void keyPressed(KeyEvent e)
+{
+number++; 
+string1 = e.getKeyText(e.getKeyCode());
+if(e.getKeyCode() == e.VK_UP)
+string2 = "Up Arrow key";
+if(e.getKeyCode() == e.VK_DOWN)
+string2 = "Down Arrow key";
+if(e.getKeyCode() == e.VK_LEFT) 
+string2 = "Left Arrow key";
+if(e.getKeyCode() == e.VK_RIGHT)
+string2 = "Right Arrow key";
+if(e.getKeyCode() == e.VK_ENTER)
+	string2 = "Enter key";
+	repaint();
+	} 
+	public void keyReleased(KeyEvent e)
+	{
+	string4 = e.getKeyText(e.getKeyCode());
+	repaint();
+	} 
+	public void keyTyped(KeyEvent e)
+	{
+	keyChar = e.getKeyChar(); 
+	if(keyChar == 'x')
+	 string3 = "The key lower case x was pressed";
+	 repaint();
+	} 
+	public void paint(Graphics g)
+	{
+	g.drawString("Number of keys pressed is : " + number, 20, 60);
+	g.drawString("Character pressed is : " + keyChar, 20,80);
+	g.drawString("Key pressed is : " + string1, 20, 100);
+	g.drawString("Key released is : " + string4, 20, 120);
+	g.drawString("Action key pressed is : " + string2, 20, 140);
+	 g.drawString(string3, 20, 160);
+	} 
+	public void actionPerformed(ActionEvent e)
+	{
+	requestFocus();
+	} 
+	} 
